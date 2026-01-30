@@ -2,7 +2,6 @@ import {NextFunction ,Request, Response, Router} from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import {prisma} from "../database";
-import {env} from '../env';
 
 
 export const authRouter = Router()
@@ -159,7 +158,7 @@ authRouter.post('/sign-in', async (req: Request, res: Response) => {
         }
 
         // 4. Passer au prochain middleware ou à la route
-        next()
+        return next()
     } catch (error) {
         return res.status(401).json({
         error: 'Token invalide ou expiré',
