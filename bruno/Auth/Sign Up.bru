@@ -18,6 +18,10 @@ body:json {
   }
 }
 
+vars:pre-request {
+  baseUrl: http://localhost:3001
+}
+
 script:post-response {
   if (res.status === 201) {
     bru.setVar("token", res.body.token);
@@ -26,10 +30,10 @@ script:post-response {
 
 docs {
   Sign up a new user account.
-
+  
   Note: Les utilisateurs du seed sont red@example.com et blue@example.com.
   Utilisez un email différent pour créer un nouveau compte.
-
+  
   Returns:
   - 201: User created successfully with JWT token (automatically saved to environment)
   - 400: Invalid input
